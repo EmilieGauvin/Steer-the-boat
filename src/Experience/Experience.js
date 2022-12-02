@@ -14,12 +14,9 @@ import LoadingBar from './LoadingBar/LoadingBar'
 
 let instance = null
 
-export default class Experience
-{
-    constructor(canvas)
-     {
-        if (instance)
-        {
+export default class Experience {
+    constructor(canvas) {
+        if (instance) {
             return instance
         }
         instance = this
@@ -56,30 +53,25 @@ export default class Experience
         this.world = new World(this.boatColor)
 
         //Sizes events
-        this.sizes.on('resize', () =>
-        {
+        this.sizes.on('resize', () => {
             this.resize()
         })
 
         //Time tick event
-        this.time.on('tick', () =>
-        {
+        this.time.on('tick', () => {
             this.update()
         })
-     
+
         // Keyboard event
-        this.keyEvents.on('left', () =>
-        {
+        this.keyEvents.on('left', () => {
             if (this.keySteer > -1) this.keySteer -= this.keySteerSpeed * Math.PI * 0.5
         })
-        this.keyEvents.on('right', () =>
-        {
+        this.keyEvents.on('right', () => {
             if (this.keySteer < 1) this.keySteer += this.keySteerSpeed * Math.PI * 0.5
         })
-        
+
         //HP GAME END events 
-        this.hPScore.on('gameEnd', () =>
-        {
+        this.hPScore.on('gameEnd', () => {
             this.camera.startPosition()
             this.timerOn = false
             this.hPScore.reset()
@@ -87,46 +79,39 @@ export default class Experience
             this.renderer.reset()
         })
 
-     }
+    }
 
-     resize()
-     {
+    resize() {
         this.camera.resize()
         this.fakeCamera.resize()
         this.renderer.resize()
         this.hPScore.hPDraw.resize()
         this.world.resize()
         if (this.steeringWheelBuilder) this.steeringWheelBuilder.resize()
-     }
-     
+    }
 
-     update()
-     {
+
+    update() {
         this.camera.update()
         this.renderer.update()
         if (this.loadingBar) this.loadingBar.update()
-        if (this.hPScore) this.hPScore.update() 
+        if (this.hPScore) this.hPScore.update()
         if (this.world) this.world.update()
-     }
+    }
 
-     destroy()
-     {
+    destroy() {
         this.sizes.off('resize')
         this.time.off('tick')
 
         //Travers the wholde scene
-        this.scene.traverse((child) =>
-        {
-            if (child instanceof THREE.Mesh)
-            {
+        this.scene.traverse((child) => {
+            if (child instanceof THREE.Mesh) {
                 child.geometry.dispose()
 
-                for (const key in child.material)
-                {
+                for (const key in child.material) {
                     const value = child.material[key]
 
-                    if (value && typeof value.dispose ==='function')
-                    {
+                    if (value && typeof value.dispose === 'function') {
                         value.dispose()
                     }
                 }
@@ -135,7 +120,7 @@ export default class Experience
 
         this.camera.controls.dispose()
         this.renderer.instance.dispose()
-        if(this.debug.active)
+        if (this.debug.active)
             this.debug.ui.destroy()
-     }
+    }
 }

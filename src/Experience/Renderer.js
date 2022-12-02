@@ -1,14 +1,12 @@
 import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
-import {EffectComposer} from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/EffectComposer.js';
-import {RenderPass} from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/RenderPass.js';
-import {SMAAPass} from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/SMAAPass.js';
+import { EffectComposer } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/RenderPass.js';
+import { SMAAPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/SMAAPass.js';
 import { OutlinePass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/OutlinePass.js';
 import Experience from "./Experience";
 
-export default class Renderer
-{
-    constructor()
-    {
+export default class Renderer {
+    constructor() {
         this.experience = new Experience()
         this.canvas = this.experience.canvas
         this.sizes = this.experience.sizes
@@ -20,12 +18,11 @@ export default class Renderer
         this.setPostProcessing()
     }
 
-    setInstance()
-    {
+    setInstance() {
         this.instance = new THREE.WebGLRenderer({
-                canvas : this.canvas,
-                antialias : true
-            }
+            canvas: this.canvas,
+            antialias: true
+        }
         )
 
         this.night = new THREE.Color('#140117');
@@ -35,12 +32,10 @@ export default class Renderer
         this.instance.antialias = true
     }
 
-    reset()
-    {
+    reset() {
         this.scene.background = new THREE.Color()
     }
-    setPostProcessing()
-    {
+    setPostProcessing() {
         const renderTarget = new THREE.WebGLRenderTarget(
             800,
             600,
@@ -57,52 +52,44 @@ export default class Renderer
 
         this.setOutlinePass()
 
-        if(this.instance.getPixelRatio() === 1 && !this.instance.capabilities.isWebGL2)
-        {
+        if (this.instance.getPixelRatio() === 1 && !this.instance.capabilities.isWebGL2) {
             this.setAntialias()
         }
     }
 
-    setOutlinePass()
-    {
-        this.outlinePass = new OutlinePass( new THREE.Vector2( window.innerWidth, window.innerHeight ), this.scene, this.camera.instance );
+    setOutlinePass() {
+        this.outlinePass = new OutlinePass(new THREE.Vector2(window.innerWidth, window.innerHeight), this.scene, this.camera.instance);
         this.outlinePass.edgeStrength = 5.0
         this.outlinePass.edgeGlow = 0.2
         this.outlinePass.edgeThickness = 3
         this.outlinePass.visibleEdgeColor.set('red')
         this.outlinePass.hiddenEdgeColor.set('red');
-        this.effectComposer.addPass( this.outlinePass );
-        // this.outlinePass.overlayMaterial.blending = THREE.NormalBlending
+        this.effectComposer.addPass(this.outlinePass);
     }
 
 
-    setAntialiasSMAA()
-    {
+    setAntialiasSMAA() {
         const smaaPass = new SMAAPass()
         this.effectComposer.addPass(smaaPass)
         console.log('Using SMAA')
     }
 
-    resize()
-    {
+    resize() {
         this.instance.setSize(this.sizes.width, this.sizes.height)
         this.instance.setPixelRatio(this.sizes.pixelRatio)
-        if (this.effectComposer) 
-        {
+        if (this.effectComposer) {
             this.effectComposer.setSize(this.sizes.width, this.sizes.height)
             this.effectComposer.setPixelRatio(Math.min(this.sizes.pixelRatio, 2))
         }
     }
 
-    update()
-    {
-        if (this.effectComposer)
-        {
+    update() {
+        if (this.effectComposer) {
             this.effectComposer.render()
-        } else 
+        } else
             this.instance.render(this.scene, this.camera.instance)
 
         if (this.experience.timerOn === false) return;
-        this.scene.background.lerp(this.night, this.experience.colorSpeed );
+        this.scene.background.lerp(this.night, this.experience.colorSpeed);
     }
 }

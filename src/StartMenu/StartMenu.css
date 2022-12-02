@@ -1,4 +1,4 @@
-div.menu{
+div.menu {
     width: 79vmin;
     height: 79vmin;
     display: flex;
@@ -7,19 +7,19 @@ div.menu{
     align-items: center;
 }
 
-div.hideMenuFalse{
+div.hideMenuFalse {
     opacity: 1;
     transition: opacity 0.8s;
     pointer-events: auto;
 }
 
-div.hideMenuTrue{
+div.hideMenuTrue {
     opacity: 0;
     transition: opacity 0.3s;
     pointer-events: none;
 }
 
-div.menuSection{
+div.menuSection {
     width: 90%;
     display: flex;
     justify-content: space-between;
@@ -28,7 +28,7 @@ div.menuSection{
     padding: 1.4vmin;
 }
 
-div.game{
+div.game {
     margin-top: 2.5vmin;
     height: 100%;
     display: flex;
@@ -37,33 +37,28 @@ div.game{
 
 }
 
-
-div.chooseColor{
+div.chooseColor {
     display: flex;
     flex-direction: column;
 }
 
-
-
-div.start{
+div.start {
     align-items: center;
 }
 
-
-
-h1{
+h1 {
     padding: 1vmin 0;
     font-size: 3.6vmin;
     line-height: 4vmin;
     /* border:solid; */
 }
 
-h3{
+h3 {
     font-size: 2.8vmin;
     line-height: 3.2vmin;
 }
 
-p{
+p {
     font-size: 2vmin;
     line-height: 2.4vmin;
 }
@@ -72,18 +67,18 @@ a {
     color: inherit
 }
 
-.start button{
-  background-color: rgba(255, 255, 255, 0);
-  color: white;
-  border: solid;
-  border-color: white;
-  font-weight: bold;
-  height: 100%;
-  width: 40%;
-  padding: 1vmin;
+.start button {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: solid;
+    border-color: white;
+    font-weight: bold;
+    height: 100%;
+    width: 40%;
+    padding: 1vmin;
 }
 
-.start button:active{
+.start button:active {
     background-color: rgba(255, 255, 255, 0);
     color: white;
     border: solid;
@@ -91,24 +86,24 @@ a {
 
 
 
-.start button:hover{
+.start button:hover {
     background-color: rgba(255, 255, 255, 0.9);
     color: mediumslateblue;
     /* mix-blend-mode: screen;  */
-    border:none;
+    border: none;
 }
 
-div.color{
+div.color {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     /* margin: 0 4vmin */
 }
 
-.color button{
+.color button {
     height: 5vmin;
     width: 5vmin;
-    border:none;
+    border: none;
     border-radius: 5vmin;
     /* padding:1vmin; */
     margin: 1vmin 1vmin;
@@ -116,80 +111,79 @@ div.color{
 
 
 
-button.darkseagreen{
+button.darkseagreen {
     background-color: darkseagreen;
 }
 
 
-button.lightcoral{
+button.lightcoral {
     background-color: lightcoral
 }
 
-button.mediumslateblue{
+button.mediumslateblue {
     background-color: mediumslateblue;
 }
 
-button.firebrick{
+button.firebrick {
     background-color: firebrick;
 }
 
-button.firebrick:active{
+button.firebrick:active {
     --color: firebrick;
 }
 
-button.seagreen{
+button.seagreen {
     background-color: seagreen;
 }
 
-button.plum{
+button.plum {
     background-color: plum;
 }
 
-button.olive{
+button.olive {
     background-color: olive;
 }
 
-button.tomato{
+button.tomato {
     background-color: tomato;
 }
 
-button.indigo{
+button.indigo {
     background-color: indigo;
 }
 
-button.thistle{
+button.thistle {
     background-color: thistle;
 }
 
-button.gold{
+button.gold {
     background-color: gold;
 }
 
-button.darkcyan{
+button.darkcyan {
     background-color: darkcyan;
 }
 
-button.darkmagenta{
+button.darkmagenta {
     background-color: darkmagenta;
 }
 
-button.orangered{
+button.orangered {
     background-color: orangered;
 }
 
-button.darkslategray{
+button.darkslategray {
     background-color: darkslategray;
 }
 
-button.lightsalmon{
+button.lightsalmon {
     background-color: lightsalmon;
 }
 
-button.mediumvioletred{
+button.mediumvioletred {
     background-color: mediumvioletred;
 }
 
-button.palegreen{
+button.palegreen {
     background-color: palegreen;
 }
-

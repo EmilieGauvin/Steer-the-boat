@@ -1,10 +1,8 @@
 import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from "../Experience";
 
-export default class Boat
-{
-    constructor(material, startingColor)
-    {
+export default class Boat {
+    constructor(material, startingColor) {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
@@ -16,11 +14,9 @@ export default class Boat
         this.startingColor = startingColor
 
         this.setInstance()
-        
     }
 
-    setInstance()
-    {
+    setInstance() {
         //GLTF model
         this.model = this.resource.scene
         this.scene.add(this.model)
@@ -29,8 +25,8 @@ export default class Boat
         //material
         this.instance.material.color = this.startingColor
         this.instance.material.side = THREE.DoubleSide
-        this.instance.material.metalness=0
-        this.instance.material.roughness =1
+        this.instance.material.metalness = 0
+        this.instance.material.roughness = 1
 
         //boat position
         this.instance.position.x = 0

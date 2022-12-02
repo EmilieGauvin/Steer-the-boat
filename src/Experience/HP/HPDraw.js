@@ -5,10 +5,8 @@ import resizeFullScreenGroup from '../Utils/resizeFullScreenGroup'
 import HPScore from './HPScore.js'
 
 
-export default class HPDraw
-{
-    constructor(startingBoatColor)
-    {
+export default class HPDraw {
+    constructor(startingBoatColor) {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.sizes = this.experience.sizes
@@ -24,43 +22,38 @@ export default class HPDraw
         this.endColor = '#4a00d2'
         this.color = new THREE.Color(this.startColor)
 
-        this.resources.on('ready', () =>
-        {
+        this.resources.on('ready', () => {
             this.setUp()
             this.backHPDrawSetUp(startingBoatColor)
             this.frontHPDrawSetUp()
         })
-
-
     }
 
-    setUp()
-    {
+    setUp() {
         this.timerPosition = new THREE.Mesh()
-        
+
         this.resource = this.resources.items.scoreBoat
         this.model = this.resource.scene
 
         this.scale = 1.8
 
         this.backHPDraw = this.model.children.find((child) => child.name === 'scoreBoatBack')
-        this.backHPDraw.scale.set (this.scale, this.scale, this.scale)
+        this.backHPDraw.scale.set(this.scale, this.scale, this.scale)
 
         this.frontHPDraw = this.model.children.find((child) => child.name === 'scoreBoatFront')
         this.frontHPDraw.position.z -= 0.0001
-        this.frontHPDraw.scale.set (this.scale, this.scale, this.scale)
+        this.frontHPDraw.scale.set(this.scale, this.scale, this.scale)
 
         this.fullscreen = fullScreenGroup(
-            [{object: this.model, X: -0.45, Y: 0.40, Z: 0}, 
-                {object: this.timerPosition, X: 0.45, Y: 0.45, Z: 0}],
-            this.fakeCamera.instance, 
+            [{ object: this.model, X: -0.45, Y: 0.40, Z: 0 },
+            { object: this.timerPosition, X: 0.45, Y: 0.45, Z: 0 }],
+            this.fakeCamera.instance,
             this.fakeCamera.instance.position.length() * 0.2,
-            this.scene, 
+            this.scene,
             false)
     }
 
-    backHPDrawSetUp(startingBoatColor)
-    {
+    backHPDrawSetUp(startingBoatColor) {
         this.backHPDrawMaterial = new THREE.ShaderMaterial({
             side: THREE.DoubleSide,
             wireframe: true,
@@ -76,18 +69,17 @@ export default class HPDraw
                 {
                     gl_FragColor = vec4(uColor, 1.0);
                 }
-            `, 
+            `,
             uniforms:
             {
-                uColor : { value: startingBoatColor}
+                uColor: { value: startingBoatColor }
             }
         })
-        
+
         this.backHPDraw.material = this.backHPDrawMaterial
     }
 
-    frontHPDrawSetUp()
-    {
+    frontHPDrawSetUp() {
         this.frontHPDrawMaterial = new THREE.ShaderMaterial({
             transparent: true,
             side: THREE.DoubleSide,
@@ -126,10 +118,10 @@ export default class HPDraw
             `,
             uniforms:
             {
-                uHP : { value: 1},
-                uTime : { value: 0},
-                uAngle : { value: 0},
-                uColor: { value: new THREE.Vector3(1, 1, 1)}
+                uHP: { value: 1 },
+                uTime: { value: 0 },
+                uAngle: { value: 0 },
+                uColor: { value: new THREE.Vector3(1, 1, 1) }
             }
         })
 
@@ -137,51 +129,43 @@ export default class HPDraw
 
     }
 
-    orientation(angle)
-    {
-        this.backHPDraw.rotation.z = (angle - Math.PI*0.5) * 0.5
-        this.frontHPDraw.rotation.z = (angle - Math.PI*0.5) * 0.5
-        this.frontHPDrawMaterial.uniforms.uAngle.value = (angle - Math.PI*0.5) * 0.5
+    orientation(angle) {
+        this.backHPDraw.rotation.z = (angle - Math.PI * 0.5) * 0.5
+        this.frontHPDraw.rotation.z = (angle - Math.PI * 0.5) * 0.5
+        this.frontHPDrawMaterial.uniforms.uAngle.value = (angle - Math.PI * 0.5) * 0.5
     }
 
-    resize()
-    {
+    resize() {
         if (this.fullscreen) resizeFullScreenGroup(this.fullscreen)
     }
 
-    reset()
-    {
+    reset() {
         this.color = new THREE.Color(this.startColor)
     }
 
-    update()
-    {
-        if (this.experience.timerOn === true)
-        {
+    update() {
+        if (this.experience.timerOn === true) {
             this.color.lerp(new THREE.Color(this.endColor), this.experience.colorSpeed)
         }
-        
 
-        if (this.frontHPDrawMaterial)
-        {
+        if (this.frontHPDrawMaterial) {
             this.frontHPDrawMaterial.uniforms.uHP.value = this.hPScore.hP / this.hPScore.hPMax
             this.frontHPDrawMaterial.uniforms.uTime.value = this.time.elapsedTime
             this.frontHPDrawMaterial.uniforms.uColor.value = new THREE.Vector3(this.color.r, this.color.g, this.color.b)
         }
-        
-        if (this.timerPosition)
-        {     
+
+        if (this.timerPosition) {
             let worldPosition = new THREE.Vector3
             this.timerPosition.getWorldPosition(worldPosition)
-            
+
             const screenPosition = worldPosition.clone()
             screenPosition.project(this.camera.instance)
-    
+
             const translateX = screenPosition.x * this.sizes.width * 0.5
             const translateY = - screenPosition.y * this.sizes.height * 0.5
             document.querySelector('.timer').style.transform = `translateX(${translateX}px) translateY(${translateY}px)`
 
-            document.querySelector('.timer').style.backgroundColor =  this.color.getStyle()
+            document.querySelector('.timer').style.backgroundColor = this.color.getStyle()
             document.querySelector('.timer').style.color = this.scene.background.getStyle()
         }
     }

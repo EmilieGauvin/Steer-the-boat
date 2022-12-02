@@ -79,7 +79,6 @@ export default function StartMenu(props) {
     <div className={hideMenu === false ? 'menu hideMenuFalse' : 'menu hideMenuTrue'}>
       <div className=' menuSection game'>
         <h1>Steer the boat to avoid the waves <br/>and try not to get water inside!</h1>
-        {/* <h3></h3> */}
         <h3>How to play :</h3>
         <h3><i>HOLD</i> the steering wheel and <i>SWIPE</i> left or right <br/>or use your left and right keyboard arrows</h3>
       </div>
@@ -95,15 +94,6 @@ export default function StartMenu(props) {
           <button className='darkseagreen' onClick ={handleClick}></button>
           <button className='darkcyan' onClick ={handleClick}></button>
           <button className='darkslategray' onClick ={handleClick}></button>
-          {/* <button className='seagreen' onClick ={handleClick}></button> */}     
-          {/* <button className='palegreen' onClick ={handleClick}></button> */}    
-          {/* <button className='orangered' onClick ={handleClick}></button> */}
-          {/* <button className='tomato' onClick ={handleClick}></button> */}
-          {/* <button className='lightsalmon' onClick ={handleClick}></button> */}
-          {/* <button className='lightcoral' onClick ={handleClick}></button> */}       
-          {/* <button className='darkmagenta' onClick ={handleClick}></button> */}
-          {/* <button className='mediumvioletred' onClick ={handleClick}></button> */}         
-          {/* <button className='thistle' onClick ={handleClick}></button> */}
         </div>
       </div>
       <div className=' menuSection start'>

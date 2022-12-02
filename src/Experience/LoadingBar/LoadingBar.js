@@ -1,11 +1,9 @@
 import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from '../Experience.js'
 
+export default class LoadingBar {
 
-export default class LoadingBar
-{
-    constructor()
-    {
+    constructor() {
         this.experience = new Experience()
         this.sizes = this.experience.sizes
         this.scene = this.experience.scene
@@ -16,25 +14,21 @@ export default class LoadingBar
         this.loaded = false
 
         // Event fires when all resources are loaded
-        this.resources.on('ready', () =>
-        {
+        this.resources.on('ready', () => {
             this.loaded = true
         })
     }
 
-    setOverlay()
-    {
+    setOverlay() {
         // Set Geometry according to window sizes
-        const baseDim =  2
-        if (this.sizes.width < this.sizes.height) 
-        {
-            this.scale = this.sizes.width/this.sizes.height
-            this.overlayGeometry = new THREE.PlaneGeometry(baseDim, baseDim* this.scale, 1, 1)
+        const baseDim = 2
+        if (this.sizes.width < this.sizes.height) {
+            this.scale = this.sizes.width / this.sizes.height
+            this.overlayGeometry = new THREE.PlaneGeometry(baseDim, baseDim * this.scale, 1, 1)
         }
-        if (this.sizes.width >= this.sizes.height) 
-        {
-            this.scale = this.sizes.height/this.sizes.width
-            this.overlayGeometry = new THREE.PlaneGeometry(baseDim* this.scale, baseDim, 1, 1)
+        if (this.sizes.width >= this.sizes.height) {
+            this.scale = this.sizes.height / this.sizes.width
+            this.overlayGeometry = new THREE.PlaneGeometry(baseDim * this.scale, baseDim, 1, 1)
         }
 
         // Material
@@ -70,9 +64,9 @@ export default class LoadingBar
             uniforms:
             {
                 uAlpha: { value: 1 },
-                uColor: { value: new THREE.Vector3(0.48235294, 0.40784314, 0.93333333)},
+                uColor: { value: new THREE.Vector3(0.48235294, 0.40784314, 0.93333333) },
                 uTime: { value: 0 }
-            }        
+            }
         })
 
         // Mesh
@@ -81,15 +75,12 @@ export default class LoadingBar
         this.scene.add(this.overlay)
     }
 
-    update()
-    {
+    update() {
         // if overlay in scene and resources loaded, overlay disappears and is disposed
-        if (this.scene.getObjectByName('overlay')) 
-        {
+        if (this.scene.getObjectByName('overlay')) {
             this.overlayMaterial.uniforms.uTime.value = this.time.elapsedTime
-            if (this.loaded === true)
-            {
-                if (this.overlayMaterial.uniforms.uAlpha.value > 0) this.overlayMaterial.uniforms.uAlpha.value-= 1.5 * this.time.deltaTime
+            if (this.loaded === true) {
+                if (this.overlayMaterial.uniforms.uAlpha.value > 0) this.overlayMaterial.uniforms.uAlpha.value -= 1.5 * this.time.deltaTime
                 else {
                     this.scene.remove(this.overlay)
                     this.overlayGeometry.dispose()

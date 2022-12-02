@@ -2,14 +2,9 @@ import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from '../../Experience.js'
 import fullScreenGroup from '../../Utils/fullScreenGroup'
 import resizeFullScreenGroup from '../../Utils/resizeFullScreenGroup'
-import EventEmitter from "../../Utils/EventEmitter"
 
-
-
-export default class SteeringWheelBuilder
-{
-    constructor()
-    {
+export default class SteeringWheelBuilder {
+    constructor() {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.time = this.experience.time
@@ -28,24 +23,20 @@ export default class SteeringWheelBuilder
         this.intersect = []
 
         //Pointer events
-        this.pointerEvents.on('pointerDown', () =>
-        {
+        this.pointerEvents.on('pointerDown', () => {
             this.selectSteeringWheel()
         })
 
-        this.pointerEvents.on('pointerMove', () =>
-        {
+        this.pointerEvents.on('pointerMove', () => {
             this.moveSteeringWheel()
         })
 
-        this.pointerEvents.on('pointerCancel', () =>
-        {
+        this.pointerEvents.on('pointerCancel', () => {
             this.dropSteeringWheel()
         })
     }
 
-    selectSteeringWheel()
-    {
+    selectSteeringWheel() {
         //Check if clicked on steeringWhell
         this.raycaster.setFromCamera(this.pointer, this.camera.instance)
         this.intersect = this.raycaster.intersectObject(this.model)
@@ -53,8 +44,7 @@ export default class SteeringWheelBuilder
         else this.steeringOn = false
     }
 
-    moveSteeringWheel()
-    {
+    moveSteeringWheel() {
         //If didn't clicked on steeringWheel, or the wheel resetting, return
         if (this.steeringOn === false) return
         if (this.wheelResetting === true) return
@@ -67,15 +57,13 @@ export default class SteeringWheelBuilder
         if (this.instance.rotation.z <= -Math.PI * 0.5) this.instance.rotation.z = -Math.PI * 0.4
     }
 
-    dropSteeringWheel()
-    {
+    dropSteeringWheel() {
         //If clicked on steeringwheel, reset it
         if (this.steeringOn === false) return
         this.wheelResetting = true
     }
 
-    setModel()
-    {
+    setModel() {
         this.resource = this.resources.items.steeringWheel
         this.model = this.resource.scene
         this.scale = 0.10
@@ -93,35 +81,29 @@ export default class SteeringWheelBuilder
         })
 
         this.fullscreen = fullScreenGroup(
-            [{object: this.model, X: 0, Y: -0.45, Z: 0}],
-            this.fakeCamera.instance, 
+            [{ object: this.model, X: 0, Y: -0.45, Z: 0 }],
+            this.fakeCamera.instance,
             this.fakeCamera.instance.position.length() * 0.2,
-            this.scene, 
+            this.scene,
             false)
     }
 
-    resize()
-    {
+    resize() {
         if (this.fullscreen) resizeFullScreenGroup(this.fullscreen)
     }
 
-    update()
-    {
+    update() {
         //Reset wheel to angle = 0
-        if (this.wheelResetting === true)
-        {
-            if (this.instance.rotation.z < 0) 
-            {
+        if (this.wheelResetting === true) {
+            if (this.instance.rotation.z < 0) {
                 this.instance.rotation.z += 4 * this.time.deltaTime
                 if (this.instance.rotation.z >= 0) this.instance.rotation.z = 0
             }
-            if (this.instance.rotation.z > 0) 
-            {
+            if (this.instance.rotation.z > 0) {
                 this.instance.rotation.z -= 4 * this.time.deltaTime
                 if (this.instance.rotation.z <= 0) this.instance.rotation.z = 0
             }
-            if (this.instance.rotation.z === 0) 
-            {
+            if (this.instance.rotation.z === 0) {
                 this.intersect = []
                 this.steeringOn = false
                 this.experience.keySteer = 0

@@ -1,10 +1,8 @@
 import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from "../Experience";
 
-export default class Environment
-{
-    constructor(startSkyColor, startSeaColor)
-    {
+export default class Environment {
+    constructor(startSkyColor, startSeaColor) {
         this.experience = new Experience()
         this.scene = this.experience.scene
         this.resources = this.experience.resources
@@ -15,22 +13,19 @@ export default class Environment
         this.setSpotLight()
     }
 
-    setSeaDirectionalLight(color)
-    {   
+    setSeaDirectionalLight(color) {
         this.seaDirectionalLight = new THREE.DirectionalLight(color, 1)
         this.scene.add(this.seaDirectionalLight)
         this.seaDirectionalLight.position.set(0.25, -1, 0.25)
     }
 
-    setSkyDirectionalLight(color)
-    {   
+    setSkyDirectionalLight(color) {
         this.skyDirectionalLight = new THREE.DirectionalLight(color, 1)
         this.scene.add(this.skyDirectionalLight)
         this.skyDirectionalLight.position.set(0.25, 1, 0.25)
     }
 
-    setSpotLight()
-    {   
+    setSpotLight() {
         const spotLight = new THREE.SpotLight('#ffffff', 0.85, 20, Math.PI, 0.25, 1)
         spotLight.position.set(0, 0.3, 2)
         spotLight.target.position.set(0, 1, 2)

@@ -2,17 +2,14 @@ import EventEmitter from "../Utils/EventEmitter"
 import HPDraw from './HPDraw'
 import Experience from '../Experience.js'
 
-
 let instance = null
 
-export default class HPScore extends EventEmitter
-{
-    constructor(startingBoatColor)
-    {
+export default class HPScore extends EventEmitter {
+
+    constructor(startingBoatColor) {
         super(startingBoatColor)
 
-        if (instance)
-        {
+        if (instance) {
             return instance
         }
 
@@ -28,30 +25,25 @@ export default class HPScore extends EventEmitter
         this.triggerTimerOn = false
     }
 
-    reset()
-    {
-        this.hP = this.hPMax* 4.25/5
+    reset() {
+        this.hP = this.hPMax * 4.25 / 5
         this.hPDraw.reset()
     }
 
-    orientation(angle)
-    {
+    orientation(angle) {
         this.hPDraw.orientation(angle)
     }
 
-    update()
-    {
+    update() {
 
-        if ((this.triggerTimerOn === false) && (this.experience.timerOn === true))
-        {
+        if ((this.triggerTimerOn === false) && (this.experience.timerOn === true)) {
             this.triggerTimerOn = true
             this.trigger('gameStart')
         }
         this.hPDraw.update()
     }
 
-    gameEnd()
-    {
+    gameEnd() {
         this.trigger('gameEnd')
         this.triggerTimerOn = false
         this.reset()

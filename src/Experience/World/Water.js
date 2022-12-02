@@ -2,10 +2,8 @@ import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
 import Experience from '../Experience.js'
 
 
-export default class Water
-{
-    constructor(material)
-    {
+export default class Water {
+    constructor(material) {
         this.experience = new Experience()
         this.scene = this.experience.scene
 
@@ -13,8 +11,7 @@ export default class Water
         this.setUp()
     }
 
-    setUp()
-    {
+    setUp() {
         // Geometry
         const waterGeometry = new THREE.PlaneGeometry(4, 4, 256, 256)
 
