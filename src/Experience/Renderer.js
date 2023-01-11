@@ -1,8 +1,8 @@
-import * as THREE from 'https://unpkg.com/three@0.145.0/build/three.module'
-import { EffectComposer } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/EffectComposer.js';
-import { RenderPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/RenderPass.js';
-import { SMAAPass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/SMAAPass.js';
-import { OutlinePass } from 'https://unpkg.com/three@0.145.0/examples/jsm/postprocessing/OutlinePass.js';
+import * as THREE from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r146/build/three.module.js'
+import { EffectComposer } from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r146/examples/jsm/postprocessing/EffectComposer.js';
+import { RenderPass } from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r146/examples/jsm/postprocessing/RenderPass.js';
+import { SMAAPass } from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r146/examples/jsm/postprocessing/SMAAPass.js';
+import { OutlinePass } from 'https://cdn.jsdelivr.net/gh/mrdoob/three.js@r146/examples/jsm/postprocessing/OutlinePass.js';
 import Experience from "./Experience";
 
 export default class Renderer {
