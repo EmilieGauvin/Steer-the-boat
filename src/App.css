@@ -1,0 +1,17 @@
+#root {
+  position: absolute;
+  width: 100vw;
+  height: 100%;
+  /* top:50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+.app{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}

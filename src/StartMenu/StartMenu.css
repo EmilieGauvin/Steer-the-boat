@@ -1,0 +1,189 @@
+div.menu {
+    width: 79vmin;
+    height: 79vmin;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+div.hideMenuFalse {
+    opacity: 1;
+    transition: opacity 0.8s;
+    pointer-events: auto;
+}
+
+div.hideMenuTrue {
+    opacity: 0;
+    transition: opacity 0.3s;
+    pointer-events: none;
+}
+
+div.menuSection {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 3.5vmin;
+    background-color: rgba(0, 46, 32, 0.05);
+    padding: 1.4vmin;
+}
+
+div.game {
+    margin-top: 2.5vmin;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+
+}
+
+div.chooseColor {
+    display: flex;
+    flex-direction: column;
+}
+
+div.start {
+    align-items: center;
+}
+
+h1 {
+    padding: 1vmin 0;
+    font-size: 3.6vmin;
+    line-height: 4vmin;
+    /* border:solid; */
+}
+
+h3 {
+    font-size: 2.8vmin;
+    line-height: 3.2vmin;
+}
+
+p {
+    font-size: 2vmin;
+    line-height: 2.4vmin;
+}
+
+a {
+    color: inherit
+}
+
+.start button {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: solid;
+    border-color: white;
+    font-weight: bold;
+    height: 100%;
+    width: 40%;
+    padding: 1vmin;
+}
+
+.start button:active {
+    background-color: rgba(255, 255, 255, 0);
+    color: white;
+    border: solid;
+}
+
+
+
+.start button:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    color: mediumslateblue;
+    /* mix-blend-mode: screen;  */
+    border: none;
+}
+
+div.color {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    /* margin: 0 4vmin */
+}
+
+.color button {
+    height: 5vmin;
+    width: 5vmin;
+    border: none;
+    border-radius: 5vmin;
+    /* padding:1vmin; */
+    margin: 1vmin 1vmin;
+}
+
+
+
+button.darkseagreen {
+    background-color: darkseagreen;
+}
+
+
+button.lightcoral {
+    background-color: lightcoral
+}
+
+button.mediumslateblue {
+    background-color: mediumslateblue;
+}
+
+button.firebrick {
+    background-color: firebrick;
+}
+
+button.firebrick:active {
+    --color: firebrick;
+}
+
+button.seagreen {
+    background-color: seagreen;
+}
+
+button.plum {
+    background-color: plum;
+}
+
+button.olive {
+    background-color: olive;
+}
+
+button.tomato {
+    background-color: tomato;
+}
+
+button.indigo {
+    background-color: indigo;
+}
+
+button.thistle {
+    background-color: thistle;
+}
+
+button.gold {
+    background-color: gold;
+}
+
+button.darkcyan {
+    background-color: darkcyan;
+}
+
+button.darkmagenta {
+    background-color: darkmagenta;
+}
+
+button.orangered {
+    background-color: orangered;
+}
+
+button.darkslategray {
+    background-color: darkslategray;
+}
+
+button.lightsalmon {
+    background-color: lightsalmon;
+}
+
+button.mediumvioletred {
+    background-color: mediumvioletred;
+}
+
+button.palegreen {
+    background-color: palegreen;
+}
